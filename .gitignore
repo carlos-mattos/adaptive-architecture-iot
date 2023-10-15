@@ -5,3 +5,5 @@
 iot_telemetry_data.csv
 
 package-lock.json
+
+.env

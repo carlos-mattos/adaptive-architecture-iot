@@ -1,11 +1,21 @@
-const mqtt = require("mqtt");
+import "dotenv/config.js";
+import db from "./config/Database.js";
+import { Mqtt } from "./config/Mqtt.js";
+import { App } from "./app.js";
 
-const client = mqtt.connect("mqtt://localhost:1883");
+(async () => {
+  try {
+    await db.connect();
+    await db.query("SELECT NOW() AS now").then((res) => {
+      console.log("Database connected at", res.rows[0].now);
+    });
 
-client.on("connect", () => {
-  console.log("connected");
-});
+    const MQTT = await Mqtt.connect();
 
-client.on("error", (error) => {
-  console.error(error);
-});
+    const app = new App(db, MQTT);
+
+    app.init();
+  } catch (error) {
+    console.log(error);
+  }
+})();
