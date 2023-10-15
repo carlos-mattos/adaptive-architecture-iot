@@ -20,6 +20,6 @@ export class App {
       `SELECT * FROM telemetry LIMIT 1 OFFSET ${this.offset}`
     );
 
-    console.log(result.rows[0]);
+    this.MQTT.publish("telemetry", JSON.stringify(result.rows[0]));
   }
 }

@@ -21,10 +21,6 @@ export class Mqtt {
     });
   }
 
-  subscribe(topic, callback) {
-    this.client.subscribe(topic, callback);
-  }
-
   publish(topic, message) {
     this.client.publish(topic, message);
   }
