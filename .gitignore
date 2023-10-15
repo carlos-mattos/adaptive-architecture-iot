@@ -1,0 +1,7 @@
+/node_modules
+/mosquitto/data
+/mosquitto/log
+
+iot_telemetry_data.csv
+
+package-lock.json
